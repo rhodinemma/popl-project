@@ -4,7 +4,7 @@ const axios = require("axios");
 const app = express();
 const port = 5000;
 
-const API_KEY = "d37f78971b1063ccf34a287df290899e";
+const API_KEY = "ec18ccf09b6371544e9dee1787c0514e";
 
 //declaring our weather API here
 const URL = "https://api.openweathermap.org/data/2.5/";

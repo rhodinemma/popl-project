@@ -2,9 +2,7 @@ import React from 'react'
 
 const index = () => {
   return (
-    <center>
-        <small>Made with love by Group 6</small>
-    </center>
+    <h1 className="display-6">this is the team page</h1>
   )
 }
 

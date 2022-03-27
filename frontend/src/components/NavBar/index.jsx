@@ -45,7 +45,7 @@ const index = () => {
                     </Link>
                   </Nav>
                   <Nav>
-                    <Link to={"#"} className="nav-link">
+                    <Link to={"/team"} className="nav-link">
                       <b>Team</b>
                     </Link>
                   </Nav>
