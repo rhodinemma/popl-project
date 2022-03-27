@@ -8,8 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@bit/react-bootstrap.react-bootstrap.jumbotron": "^1.0.0",
+    "bootstrap": "^5.1.3",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.2.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.2"
   },

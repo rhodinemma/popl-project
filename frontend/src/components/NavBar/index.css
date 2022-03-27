@@ -1,0 +1,9 @@
+.navigation{
+    padding-bottom: 1rem;
+}
+
+.elements{
+    margin-right: 4rem;
+    display: flex;
+    justify-content:space-evenly;
+}
