@@ -1,0 +1,11 @@
+.hero {
+    background-image: url("../../assets/bg-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 83vh;
+}
+
+.title{
+    font-weight: 900;
+    font-size: calc(1rem + 5vw);
+}

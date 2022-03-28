@@ -6,8 +6,9 @@ const port = 5000;
 
 const API_KEY = "ec18ccf09b6371544e9dee1787c0514e";
 
-//declaring our weather API here
+//declaring our News and weather API here
 const URL = "https://api.openweathermap.org/data/2.5/";
+const NEWS_URL = "http://newsapi.org/v2/";
 
 //allow our frontend to connect with backend(CORS policy)
 app.use(function (req, res, next) {
