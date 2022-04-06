@@ -1,44 +1,13 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { Table, Container, Row, Col, Spinner } from "react-bootstrap";
+import { Table, Container, Row, Col, Spinner, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudBolt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 
 const index = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  {
-    /*
-  const [cityWeatherData, setCityWeatherData] = useState([]);
-  const [isSearch, setIsSearch] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-    */
-  }
-
-  {
-    /*const handleChange = async (event) => {
-    setSearchTerm(event.target.value);
-    if (searchTerm.length >= 4) {
-      const response = await fetch(
-        `http://localhost:5000/getWeatherInfo/city?city=${searchTerm}`,
-        {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json:charset=utf-8",
-          }),
-        }
-      );
-      const postData = await response.json();
-      setCityWeatherData(postData);
-      setIsLoading(false);
-      setIsSearch(true);
-    } else {
-      setIsLoading(false);
-      setIsSearch(false);
-    }
-  };*/
-  }
 
   useEffect(() => {
     let latitude = 51;
@@ -73,35 +42,6 @@ const index = () => {
     };
   }, []);
 
-  {
-    /*const showSearchResults = () => {
-    if (isSearch) {
-      return (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>City</th>
-              <th>Temperature</th>
-              <th>Pressure</th>
-              <th>Humidity</th>
-              <th>Cloudiness</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{cityWeatherData?.name}</td>
-              <td>{cityWeatherData?.main?.temp} Celcius</td>
-              <td>{cityWeatherData?.main?.pressure} hPa</td>
-              <td>{cityWeatherData?.main?.humidity}%</td>
-              <td>{cityWeatherData?.clouds}%</td>
-            </tr>
-          </tbody>
-        </Table>
-      );
-    }
-  };*/
-  }
-
   return (
     <div className="hero text-white">
       <Container fluid>
@@ -114,16 +54,10 @@ const index = () => {
                 </Spinner>
               )}
 
-              <h2 className="display-6 mt-4 title">Weather Portal</h2>
+              <h2 className="display-6 mt-4 title">
+                <FontAwesomeIcon icon={faCloudBolt} /> Weather Portal
+              </h2>
               <br />
-              {/*<input
-                type="text"
-                className="form-control"
-                placeholder="Search by City Name"
-                value={searchTerm}
-                onChange={handleChange}
-              />
-              <br />*/}
               {!isLoading && (
                 <>
                   <small>
@@ -136,7 +70,7 @@ const index = () => {
                   <br />
 
                   <small>
-                    Current location (latitude , longitude): &nbsp;&nbsp;
+                    Your location (latitude , longitude): &nbsp;&nbsp;
                     <b>
                       {weatherData?.lat} , {weatherData?.lon}
                     </b>
@@ -175,9 +109,14 @@ const index = () => {
                       </tbody>
                     </Table>
                   </div>
+
+                  <br />
+                  <Button variant="info">
+                    Check chances of rain&nbsp;&nbsp;
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </Button>
                 </>
               )}
-              {/*{isSearch && showSearchResults()}*/}
             </Col>
           </center>
         </Row>

@@ -2,6 +2,8 @@ import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 
 const index = () => {
@@ -17,7 +19,7 @@ const index = () => {
       <Container fluid>
         <Navbar.Brand href="#home">
           <Link to={"/"} className="nav-link">
-            <Button variant="info">PoPl Project</Button>
+            <Button variant="info"><FontAwesomeIcon icon={faHome} /> PoPl Project</Button>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -42,11 +44,6 @@ const index = () => {
                   <Nav>
                     <Link to={"/weather"} className="nav-link">
                       <b>Weather</b>
-                    </Link>
-                  </Nav>
-                  <Nav>
-                    <Link to={"/team"} className="nav-link">
-                      <b>Team</b>
                     </Link>
                   </Nav>
                 </Nav>

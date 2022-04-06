@@ -1,54 +1,73 @@
-import React, { useState } from "react";
-import { getArticles } from "../../api";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
+import NewsCard from "../../components/NewsCard";
 import "./index.css";
 
 const index = () => {
   const [articles, setArticles] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isSearch, setIsSearch] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleChange = async (event) => {
-    setSearchTerm(event.target.value);
-    if (searchTerm.length >= 4) {
-      const response = await getArticles(searchTerm);
+  useEffect(() => {
+    const getArticles = async () => {
+      const response = await axios.get(
+        `https://newsapi.org/v2/everything?q=uganda&apiKey=6d7f09e1de534e21834fa5de3869404b`
+      );
+      setArticles(response.data.articles);
+      setIsLoading(false);
       console.log(response);
-      setArticles(response);
-      setIsLoading(false);
-      setIsSearch(true);
-    } else {
-      setIsLoading(false);
-      setIsSearch(false);
-    }
-  };
-
+    };
+    getArticles();
+  }, []);
   return (
     <>
-      <div className="hero text-white">
+      <div className="text-white">
         <Container fluid>
           <Row>
             <center>
               <Col md={8} className="mt-4">
                 {isLoading && (
-                  <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+                  <>
+                    <Spinner animation="border" variant="info" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </>
                 )}
 
-                <h2 className="display-6 mt-4 title">News Portal</h2>
+                <h2 className="display-6 mt-4 title text-dark">
+                  <FontAwesomeIcon icon={faNewspaper} /> News Portal
+                </h2>
                 <br />
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search topic"
-                  value={searchTerm}
-                  onChange={handleChange}
-                />
+                <div className="d-grid gap-2">
+                  <Button variant="primary" size="lg">
+                    Fetch local news
+                  </Button>
+                  <Button variant="secondary" size="lg">
+                    Fetch global news
+                  </Button>
+                </div>
                 <br />
-                {!isSearch && (
+                {!isLoading && (
                   <>
-                    <h2>{articles?.status?.content}</h2>
+                    <div>
+                      {articles.map((article) => {
+                        return (
+                          <>
+                            <NewsCard
+                              title={article.title}
+                              description={article.description}
+                              url={article.url}
+                              urlToImage={article.urlToImage}
+                            />
+                            <br />
+                            <br />
+                            <br />
+                          </>
+                        );
+                      })}
+                    </div>
                   </>
                 )}
               </Col>
