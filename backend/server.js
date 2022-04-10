@@ -2,7 +2,6 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const port = 5000;
 
 const API_KEY = "ec18ccf09b6371544e9dee1787c0514e";
 const NEWS_KEY = "6d7f09e1de534e21834fa5de3869404b";
@@ -20,6 +19,10 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+app.get("/", (req, res)=>{
+  res.send("Welcome to our backend service");
+})
 
 //route to fetch news articles
 app.get("/localnews", async (req, res) => {
@@ -65,6 +68,5 @@ app.get("/getWeatherInfo/all/", async (req, res) => {
 });
 
 //running our backend service here
-app.listen(port, () => {
-  console.log(`Backend service running at http://localhost:${port}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, ()=>console.log(`Backend server started at port ${PORT}`));

@@ -26,7 +26,7 @@ const index = () => {
 
     const fetchWeatherDetails = async (latitude, longitude) => {
       const response = await fetch(
-        `http://localhost:5000/getWeatherInfo/all?lat=${latitude}&lon=${longitude}`,
+        `https://popl-project.herokuapp.com/getWeatherInfo/all?lat=${latitude}&lon=${longitude}`,
         {
           method: "GET",
           headers: new Headers({

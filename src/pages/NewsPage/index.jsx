@@ -12,12 +12,16 @@ const index = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const getLocalArticles = async () => {
-    const response = await axios.get(`http://localhost:5000/localnews`);
+    const response = await axios.get(
+      `https://popl-project.herokuapp.com/localnews`
+    );
     setLocalArticles(response.data);
     setIsLoading(false);
   };
   const getGlobalArticles = async () => {
-    const response = await axios.get(`http://localhost:5000/globalnews`);
+    const response = await axios.get(
+      `https://popl-project.herokuapp.com/globalnews`
+    );
     setGlobalArticles(response.data);
     setIsLoading(false);
   };
