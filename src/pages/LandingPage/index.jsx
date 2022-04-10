@@ -31,7 +31,7 @@ const index = () => {
                           See news
                         </Link>
                       </Button>{" "}
-                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      
                       <Button variant="secondary">
                         <Link
                           to={"/weather"}
