@@ -41,7 +41,6 @@ const index = ({ title, description, url, urlToImage }) => {
         </Row>
       </Container>
       <br />
-      <br />
     </>
   );
 };

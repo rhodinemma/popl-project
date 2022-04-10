@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Table, Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudBolt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCloudBolt, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 
 const index = () => {
@@ -41,6 +41,10 @@ const index = () => {
       setIsLoading(false);
     };
   }, []);
+
+  const refresh = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="hero text-white">
@@ -111,9 +115,9 @@ const index = () => {
                   </div>
 
                   <br />
-                  <Button variant="info">
-                    Check chances of rain&nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faArrowRight} />
+                  <Button variant="info" onClick={() => refresh()}>
+                    Refresh&nbsp;
+                    <FontAwesomeIcon icon={faRefresh} />
                   </Button>
                 </>
               )}

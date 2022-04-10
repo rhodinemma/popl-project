@@ -9,21 +9,25 @@ import "./index.css";
 const index = () => {
   const [locals, setLocalArticles] = useState([]);
   const [globals, setGlobalArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getLocalArticles = async () => {
+    setIsLoading(true);
     const response = await axios.get(
       `https://popl-project.herokuapp.com/localnews`
     );
     setLocalArticles(response.data);
     setIsLoading(false);
+    setGlobalArticles([]);
   };
   const getGlobalArticles = async () => {
+    setIsLoading(true);
     const response = await axios.get(
       `https://popl-project.herokuapp.com/globalnews`
     );
     setGlobalArticles(response.data);
     setIsLoading(false);
+    setLocalArticles([]);
   };
 
   return (
@@ -34,33 +38,33 @@ const index = () => {
             <center>
               <Col md={8} className="mt-4">
                 {isLoading && (
-                  <>
-                    <Spinner animation="border" variant="info" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  </>
+                  <Spinner animation="border" variant="info" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
                 )}
 
                 <h2 className="display-6 mt-4 title text-dark">
                   <FontAwesomeIcon icon={faNewspaper} /> News Portal
                 </h2>
                 <br />
-                <div className="d-grid gap-2">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    onClick={() => getLocalArticles()}
-                  >
-                    Fetch local news
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    onClick={() => getGlobalArticles()}
-                  >
-                    Fetch global news
-                  </Button>
-                </div>
+                <Col md={4}>
+                  <div className="d-grid gap-2">
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={() => getLocalArticles()}
+                    >
+                      Fetch local news
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      onClick={() => getGlobalArticles()}
+                    >
+                      Fetch global news
+                    </Button>
+                  </div>
+                </Col>
                 <br />
                 {!isLoading ? (
                   <>
@@ -74,9 +78,7 @@ const index = () => {
                               url={article.url}
                               urlToImage={article.urlToImage}
                             />
-                            <br />
-                            <br />
-                            <br />
+                            
                           </>
                         );
                       })}
@@ -101,9 +103,7 @@ const index = () => {
                               url={local.url}
                               urlToImage={local.urlToImage}
                             />
-                            <br />
-                            <br />
-                            <br />
+                            
                           </>
                         );
                       })}
