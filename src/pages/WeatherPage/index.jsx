@@ -36,7 +36,7 @@ const index = () => {
         }
       );
       const postData = await response.json();
-      console.log(postData);
+      //console.log(postData);
       setWeatherData(postData);
       setIsLoading(false);
     };
@@ -115,7 +115,7 @@ const index = () => {
                   </div>
 
                   <br />
-                  <Button variant="info" onClick={() => refresh()}>
+                  <Button variant="info">
                     Refresh&nbsp;
                     <FontAwesomeIcon icon={faRefresh} />
                   </Button>
